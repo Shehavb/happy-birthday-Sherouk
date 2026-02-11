@@ -6,165 +6,108 @@
 <title>Happy Birthday Sherouk</title>
 
 <style>
-body{
-    margin:0;
-    height:100vh;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
 }
 
-/* Card */
-.card{
-    background:white;
-    padding:40px;
-    border-radius:25px;
-    text-align:center;
-    box-shadow:0 20px 40px rgba(0,0,0,0.2);
-    width:90%;
-    max-width:500px;
-    position:relative;
-    z-index:2;
-    cursor:pointer;
-    transition:0.4s;
+.card {
+  background: rgba(255,255,255,0.9);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  animation: fadeIn 1.5s ease;
 }
 
-.card:hover{
-    transform:scale(1.02);
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  color: #ff4d6d;
 }
 
-h1{
-    font-size:2.8rem;
-    color:#ff4d6d;
+h2 {
+  margin: 10px 0;
+  font-size: 2rem;
+  color: #333;
 }
 
-h2{
-    margin-top:10px;
+p {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #555;
 }
 
-p{
-    margin-top:15px;
-    color:#555;
-    font-size:1.1rem;
+.profile {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 20px;
 }
 
-/* Image */
-.profile{
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    object-fit:cover;
-    margin-top:20px;
-    animation:shake 3s infinite;
-}
-
-@keyframes shake{
-    0%{transform:rotate(-2deg);}
-    50%{transform:rotate(2deg);}
-    100%{transform:rotate(-2deg);}
-}
-
-/* Floating hearts */
-.heart{
-    position:absolute;
-    color:#ff4d6d;
-    font-size:20px;
-    animation:floatUp 4s linear infinite;
-}
-
-@keyframes floatUp{
-    0%{transform:translateY(0) scale(1); opacity:1;}
-    100%{transform:translateY(-600px) scale(1.5); opacity:0;}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* Balloons */
-.balloon{
-    position:absolute;
-    bottom:-150px;
-    width:40px;
-    height:60px;
-    background:#ff4d6d;
-    border-radius:50%;
-    animation:balloonFloat 10s linear infinite;
+.balloons {
+  position: absolute;
+  bottom: -150px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
-@keyframes balloonFloat{
-    0%{transform:translateY(0);}
-    100%{transform:translateY(-120vh);}
+.balloon {
+  width: 60px;
+  height: 80px;
+  border-radius: 50%;
+  animation: float 6s infinite ease-in-out;
+}
+
+.balloon:nth-child(1){background:#ff4d6d;}
+.balloon:nth-child(2){background:#ff85a1; animation-delay:1s;}
+.balloon:nth-child(3){background:#ffb3c6; animation-delay:2s;}
+.balloon:nth-child(4){background:#ffc2d1; animation-delay:3s;}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-300px); }
+  100% { transform: translateY(0); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" onclick="startSurprise()">
-    <h1>Happy Birthday 🎉</h1>
-    <h2>Sherouk 🫶🏻😍</h2>
-    <p>February 13 — the day the most beautiful soul was born 💖</p>
-    <p>May your life be filled with love, happiness and endless smiles ✨</p>
-
-    <img src="Sherouk.jpg" class="profile" alt="Sherouk">
+<div class="card">
+  <h1>Happy Birthday 🎉</h1>
+  <h2>Sherouk 🫶🏻😍</h2>
+  <p>February 13 — the day the most beautiful soul was born 💖</p>
+  <p>Wishing you endless happiness, love and unforgettable moments ✨</p>
+  <img src="Sherouk.jpg" class="profile" alt="Sherouk">
 </div>
 
-<audio id="music" src="sherouk_birthday.mp3"></audio>
+<div class="balloons">
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+</div>
 
-<script>
-let started = false;
-
-function startSurprise(){
-    if(started) return;
-    started = true;
-
-    document.getElementById("music").play();
-
-    createHearts();
-    createBalloons();
-}
-
-/* Hearts */
-function createHearts(){
-    setInterval(()=>{
-        const heart = document.createElement("div");
-        heart.className="heart";
-        heart.innerHTML="🫶🏻";
-        heart.style.left=Math.random()*100+"vw";
-        heart.style.fontSize=(15+Math.random()*25)+"px";
-        document.body.appendChild(heart);
-
-        setTimeout(()=>{heart.remove();},4000);
-    },600);
-}
-
-/* Balloons */
-function createBalloons(){
-    setInterval(()=>{
-        const balloon = document.createElement("div");
-        balloon.className="balloon";
-        balloon.style.left=Math.random()*100+"vw";
-        balloon.style.backgroundColor=
-            ["#ff4d6d","#ff85a1","#ffb3c6","#ffc2d1"][Math.floor(Math.random()*4)];
-        document.body.appendChild(balloon);
-
-        setTimeout(()=>{balloon.remove();},10000);
-    },2000);
-}
-
-/* Click hearts */
-document.body.addEventListener("click",function(e){
-    const heart = document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="😍";
-    heart.style.left=e.pageX+"px";
-    heart.style.top=e.pageY+"px";
-    heart.style.position="absolute";
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{heart.remove();},4000);
-});
-</script>
+<audio autoplay loop>
+  <source src="sherouk_birthday.mp3" type="audio/mp3">
+</audio>
 
 </body>
 </html>
