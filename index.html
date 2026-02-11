@@ -17,7 +17,6 @@ body{
   overflow:hidden;
 }
 
-/* Unlock Screen */
 .unlock-screen{
   position:absolute;
   width:100%;
@@ -44,7 +43,6 @@ body{
   100%{transform:scale(1);}
 }
 
-/* Main Card */
 .card{
   background:white;
   padding:40px;
@@ -61,6 +59,14 @@ body{
 .card.show{
   opacity:1;
   transform:scale(1);
+}
+
+.profile{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-top:20px;
 }
 
 h1{
@@ -80,7 +86,6 @@ p{
   font-size:1.2rem;
 }
 
-/* Floating Hearts */
 .heart{
   position:absolute;
   font-size:24px;
@@ -106,6 +111,9 @@ p{
   <h2>Sherouk 🫶🏻😍</h2>
   <p>February 13 — the day the most beautiful soul was born 💖</p>
   <p>May your life be filled with love, happiness, and endless smiles ✨</p>
+
+  <!-- الصورة هنا -->
+  <img src="Sherouk.jpg" class="profile" alt="Sherouk">
 </div>
 
 <audio id="bgMusic" src="sherouk_birthday.mp3" loop></audio>
@@ -120,7 +128,6 @@ unlock.addEventListener("click", ()=>{
   setTimeout(()=> unlock.style.display="none",1000);
 
   card.classList.add("show");
-
   music.play();
 
   setInterval(()=>{
@@ -130,7 +137,6 @@ unlock.addEventListener("click", ()=>{
     heart.style.left=Math.random()*100+"vw";
     heart.style.top="100vh";
     document.body.appendChild(heart);
-
     setTimeout(()=>heart.remove(),4000);
   },500);
 });
